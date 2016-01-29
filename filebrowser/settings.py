@@ -112,3 +112,6 @@ _('Image')
 _('Video')
 _('Document')
 _('Audio')
+
+# Suit Template
+SUIT_TEMPLATE = getattr(settings, "FILEBROWSER_SUIT_TEMPLATE", None)

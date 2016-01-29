@@ -1,0 +1,64 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load admin_static i18n fb_tags fb_csrf admin_list admin_urls %}
+
+<!-- STYLESHEETS -->
+{% block extrastyle %}
+    {{ block.super }}
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}" />-->
+    <link rel="stylesheet" type="text/css" href="filebrowser/css/suit-filebrowser.css" />
+{% endblock %}
+
+<!-- COLTYPE/BODYCLASS -->
+<!--{% block bodyclass %}change-form filebrowser{% if query.pop %} popup{% endif %}{% endblock %}-->
+<!--{% block coltype %}colM{% endblock %}-->
+
+<!-- BREADCRUMBS -->
+{% block breadcrumbs %}{% include "filebrowser/include/breadcrumbs.html" %}{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+<div id="content-main" class="inner-two-columns">
+    <form action="{% query_string '' 'p' %}" method="post" class="form-horizontal">
+        {% fb_csrf_token %}
+        <div class="inner-right-column">
+                <div class="box save-box">
+                    <div class="submit-row clearfix">
+                        <input type="submit" value="{% trans 'Submit' %}" class="btn btn-high btn-info" />
+                    </div>
+                </div>
+            </div>
+        <div class="inner-center-column">
+            <div class="tab-content tab-content-main">
+                {% if form.errors %}
+                    <strong class="alert alert-error">{% trans 'Please correct the following errors.' %}</strong>
+                {% endif %}
+                <fieldset class="module aligned">
+                    <div class="control-group">
+                            <div class="control-label">
+                                <label class="required" for="id_dir_name">{{ form.name.label }}</label>
+                            </div>
+                        <div class="controls">
+                            {{ form.name }}
+                            {% if form.name.errors %}<span class="help-inline">{{ form.name.errors }}</span>{% endif %}
+                            <span class="help-block">
+                                {{ form.name.help_text|safe }}
+                                {% if settings_var.NORMALIZE_FILENAME or settings_var.CONVERT_FILENAME %}
+                                    <br />
+                                    {% if settings_var.NORMALIZE_FILENAME %}
+                                        {% trans "The Name will be normalized by converting or stripping all non-standard characters." %} <br />
+                                    {% endif %}
+                                    {% if settings_var.CONVERT_FILENAME %}
+                                        {% trans "The Name will be converted to lowercase. Spaces will be replaced with underscores." %}
+                                    {% endif %}
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

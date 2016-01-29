@@ -6,7 +6,7 @@ import os
 # DJANGO IMPORTS
 from django.core import urlresolvers
 from django.db import models
-from django.db.models.fields import Field, CharField
+from django.db.models.fields import CharField
 from django import forms
 from django.forms.widgets import Input
 from django.template.loader import render_to_string
@@ -17,7 +17,17 @@ from django.contrib.admin.templatetags.admin_static import static
 # FILEBROWSER IMPORTS
 from filebrowser.settings import *
 from filebrowser.base import FileObject
+from filebrowser.conf import fb_settings
 from filebrowser.sites import site
+
+
+def _template():
+    if fb_settings.SUIT_TEMPLATE:
+        path = 'suit/'
+    else:
+        path = 'filebrowser/'
+
+    return path
 
 
 class FileBrowseWidget(Input):
@@ -57,7 +67,7 @@ class FileBrowseWidget(Input):
                 final_attrs['directory'] = os.path.split(value.original.path_relative_directory)[0]
             except:
                 pass
-        return render_to_string("filebrowser/custom_field.html", locals())
+        return render_to_string(_template() + "custom_field.html", locals())
 
 
 class FileBrowseFormField(forms.CharField):
@@ -94,7 +104,7 @@ class FileBrowseField(with_metaclass(models.SubfieldBase, CharField)):
         self.directory = kwargs.pop('directory', '')
         self.extensions = kwargs.pop('extensions', '')
         self.format = kwargs.pop('format', '')
-        return super(FileBrowseField, self).__init__(*args, **kwargs)
+        super(FileBrowseField, self).__init__(*args, **kwargs)
 
     def to_python(self, value):
         if not value or isinstance(value, FileObject):
@@ -113,11 +123,12 @@ class FileBrowseField(with_metaclass(models.SubfieldBase, CharField)):
         return value.path
 
     def formfield(self, **kwargs):
-        attrs = {}
-        attrs["filebrowser_site"] = self.site
-        attrs["directory"] = self.directory
-        attrs["extensions"] = self.extensions
-        attrs["format"] = self.format
+        attrs = {
+            "filebrowser_site": self.site,
+            "directory": self.directory,
+            "extensions": self.extensions,
+            "format": self.format
+        }
         defaults = {
             'form_class': FileBrowseFormField,
             'widget': FileBrowseWidget(attrs=attrs),
@@ -220,7 +231,7 @@ class FileBrowseUploadField(CharField):
         self.format = kwargs.pop('format', '')
         self.upload_to = kwargs.pop('upload_to', '')
         self.temp_upload_dir = kwargs.pop('temp_upload_dir', '')
-        return super(FileBrowseUploadField, self).__init__(*args, **kwargs)
+        super(FileBrowseUploadField, self).__init__(*args, **kwargs)
 
     def to_python(self, value):
         if not value or isinstance(value, FileObject):
@@ -239,13 +250,14 @@ class FileBrowseUploadField(CharField):
         return value.path
 
     def formfield(self, **kwargs):
-        attrs = {}
-        attrs["site"] = self.site
-        attrs["directory"] = self.directory
-        attrs["extensions"] = self.extensions
-        attrs["format"] = self.format
-        attrs["upload_to"] = self.upload_to
-        attrs["temp_upload_dir"] = self.temp_upload_dir
+        attrs = {
+            "site": self.site,
+            "directory": self.directory,
+            "extensions": self.extensions,
+            "format": self.format,
+            "upload_to": self.upload_to,
+            "temp_upload_dir": self.temp_upload_dir
+        }
         defaults = {
             'form_class': FileBrowseUploadFormField,
             'widget': FileBrowseUploadWidget(attrs=attrs),
@@ -257,11 +269,3 @@ class FileBrowseUploadField(CharField):
             'temp_upload_dir': self.temp_upload_dir
         }
         return super(FileBrowseUploadField, self).formfield(**defaults)
-
-
-try:
-    from south.modelsinspector import add_introspection_rules
-    add_introspection_rules([], ["^filebrowser\.fields\.FileBrowseField"])
-    add_introspection_rules([], ["^filebrowser\.fields\.FileBrowseUploadField"])
-except:
-    pass

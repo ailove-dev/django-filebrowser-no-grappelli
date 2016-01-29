@@ -35,6 +35,7 @@ from filebrowser.settings import DIRECTORY, EXTENSIONS, SELECT_FORMATS, ADMIN_VE
     LIST_PER_PAGE, OVERWRITE_EXISTING, DEFAULT_PERMISSIONS, UPLOAD_TEMPDIR
 from filebrowser.templatetags.fb_tags import query_helper
 from filebrowser.base import FileListing, FileObject
+from filebrowser.conf import fb_settings
 from filebrowser.decorators import path_exists, file_exists
 from filebrowser.storage import FileSystemStorageMixin
 from filebrowser.utils import convert_filename
@@ -52,6 +53,15 @@ except ImportError:
 
 # This cache contains all *instantiated* FileBrowser sites
 _sites_cache = {}
+
+
+def _template():
+    if fb_settings.SUIT_TEMPLATE:
+        path = 'suit/'
+    else:
+        path = 'filebrowser/'
+
+    return path
 
 
 def get_site_dict(app_name='filebrowser'):
@@ -346,13 +356,13 @@ class FileBrowserSite(object):
         except (EmptyPage, InvalidPage):
             page = p.page(p.num_pages)
 
-        return render_to_response('filebrowser/index.html', self._add_each_context({
+        return render_to_response(_template() + 'index.html', self._add_each_context({
             'p': p,
             'page': page,
             'filelisting': filelisting,
             'query': query,
             'title': _(u'FileBrowser'),
-            'is_popup': "pop" in request.REQUEST,   # ChangeList uses "pop"
+            'is_popup': "pop" in request.GET,   # ChangeList uses "pop"
             'settings_var': get_settings_var(directory=self.directory),
             'breadcrumbs': get_breadcrumbs(query, query.get('dir', '')),
             'breadcrumbs_title': "",
@@ -385,7 +395,7 @@ class FileBrowserSite(object):
         else:
             form = CreateDirForm(path, filebrowser_site=self)
 
-        return render_to_response('filebrowser/createdir.html', self._add_each_context({
+        return render_to_response(_template() + 'createdir.html', self._add_each_context({
             'form': form,
             'query': query,
             'title': _(u'New Folder'),
@@ -400,7 +410,7 @@ class FileBrowserSite(object):
         "Multipe File Upload."
         query = request.GET
 
-        return render_to_response('filebrowser/upload.html', self._add_each_context({
+        return render_to_response(_template() + 'upload.html', self._add_each_context({
             'query': query,
             'title': _(u'Select files to upload'),
             'is_popup': "pop" in request.REQUEST,
@@ -431,7 +441,7 @@ class FileBrowserSite(object):
             filelisting = None
             additional_files = None
 
-        return render_to_response('filebrowser/delete_confirm.html', self._add_each_context({
+        return render_to_response(_template() + 'delete_confirm.html', self._add_each_context({
             'fileobject': fileobject,
             'filelisting': filelisting,
             'additional_files': additional_files,
@@ -506,7 +516,7 @@ class FileBrowserSite(object):
         else:
             form = ChangeForm(initial={"name": fileobject.filename}, path=path, fileobject=fileobject, filebrowser_site=self)
 
-        return render_to_response('filebrowser/detail.html', self._add_each_context({
+        return render_to_response(_template() + 'detail.html', self._add_each_context({
             'form': form,
             'fileobject': fileobject,
             'query': query,
@@ -527,7 +537,7 @@ class FileBrowserSite(object):
         path = u'%s' % os.path.join(self.directory, query.get('dir', ''))
         fileobject = FileObject(os.path.join(path, query.get('filename', '')), site=self)
 
-        return render_to_response('filebrowser/version.html', self._add_each_context({
+        return render_to_response(_template() + 'version.html', self._add_each_context({
             'fileobject': fileobject,
             'query': query,
             'settings_var': get_settings_var(directory=self.directory),
