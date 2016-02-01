@@ -1,13 +1,13 @@
 {% extends "admin/base_site.html" %}
 
 <!-- LOADING -->
-{% load admin_static i18n fb_tags fb_pagination admin_list admin_urls %}
+{% load admin_static i18n fb_tags fb_pagination admin_urls %}
 
 <!-- STYLESHEETS -->
 {% block extrastyle %}
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static 'admin/css/changelists.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'filebrowser/css/filebrowser.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'filebrowser/css/suit-filebrowser.css' %}" />
 {% endblock %}
 
 <!-- JAVASCRIPTS -->
@@ -66,63 +66,74 @@
 {% block coltype %}flex{% endblock %}
 
 <!-- BREADCRUMBS -->
-{% block breadcrumbs %}{% include "filebrowser/include/breadcrumbs.html" %}{% endblock %}
+{% block breadcrumbs %}{% include "suit/include/breadcrumbs.html" %}{% endblock %}
 
 <!-- CONTENT -->
 {% block content %}
-    <div id="content-main">
+    <div id="content-main" class="inner-two-columns">
+        <div class="inner-right-column">
         <!-- OBJECT-TOOLS -->
-        {% block object-tools %}
-            <ul class="object-tools">
-                <li><a href="{% url 'filebrowser:fb_createdir' %}{% query_string '' 'p' %}">{% trans "New Folder" %}</a></li>
-                <li><a href="{% url 'filebrowser:fb_upload' %}{% query_string '' 'p' %}" >{% trans "Upload" %}</a></li>
-            </ul>
-        {% endblock %}
-
-        <div class="module filtered" id="changelist">
-            <!-- SEARCH -->
-            {% block search %}
-                <div id="toolbar"><form id="changelist-search" action="" method="get">
-                <div><!-- DIV needed for valid HTML -->
-                <label for="searchbar"><img src="{% static 'admin/img/icon_searchbox.png' %}" alt="Search" /></label>
-                <input type="text" size="40" name="q" value="{{ query.q }}" id="searchbar" />
-                <input type="submit" value="{% trans 'Search' %}" />
-                {% if query.filter_type %}<input type="hidden" name="filter_type" value="{{ query.filter_type }}" />{% endif %}
-                {% if query.filter_date %}<input type="hidden" name="filter_date" value="{{ query.filter_date }}" />{% endif %}
-                {% if query.o %}<input type="hidden" name="o" value="{{ query.o }}" />{% endif %}
-                {% if query.ot %}<input type="hidden" name="ot" value="{{ query.ot }}" />{% endif %}
-                {% if query.pop %}<input type="hidden" name="pop" value="{{ query.pop }}" />{% endif %}
-                {% if query.type %}<input type="hidden" name="type" value="{{ query.type }}" />{% endif %}
-                {% if query.format %}<input type="hidden" name="format" value="{{ query.format }}" />{% endif %}
-                {% if query.dir %}<input type="hidden" name="dir" value="{{ query.dir|urlencode }}" />{% endif %}
-                {% ifequal query.pop '3' %} {# Custom CKEditor fields #}
-                    {% if query.CKEditor %}<input type="hidden" name="CKEditor" value="{{ query.CKEditor }}" />{% endif %}
-                    {% if query.CKEditorFuncNum %}<input type="hidden" name="CKEditorFuncNum" value="{{ query.CKEditorFuncNum }}" />{% endif %}
-                {% endifequal %}
-                </div>
-                </form></div>
-                <script type="text/javascript">document.getElementById("searchbar").focus();</script>
-            {% endblock %}
-            {% block filters %}
+            {% block object-tools %}
+            <div class="box box-controls">
+                <a href="{% url 'filebrowser:fb_upload' %}{% query_string '' 'p' %}" class="btn btn-success">
+                    <i class="icon-upload icon-white"></i>&nbsp;
+                    {% trans "Upload" %}
+                </a><br>
+                <a href="{% url 'filebrowser:fb_createdir' %}{% query_string '' 'p' %}" class="btn btn-success">
+                    <i class="icon-plus-sign icon-white"></i>&nbsp;
+                    {% trans "New Folder" %}
+                </a>
+                {% block filters %}
                 <!-- FILTERS -->
-                {% include "filebrowser/include/filter.html" %}
+                {% include "suit/include/filter.html" %}
             {% endblock %}
+            </div>
+            {% endblock %}
+        </div>
+        <div class="inner-center-column">
+            <div class="module filtered" id="changelist">
+                <!-- SEARCH -->
+                {% block search %}
+                    <div id="toolbar">
+                        <form id="changelist-search" action="" method="get">
+                            <div><!-- DIV needed for valid HTML -->
+                            <label for="searchbar"><img src="{% static 'admin/img/icon_searchbox.png' %}" alt="Search" /></label>
+                            <input type="text" size="40" name="q" value="{{ query.q }}" id="searchbar" />
+                            <input type="submit" value="{% trans 'Search' %}" />
+                            {% if query.filter_type %}<input type="hidden" name="filter_type" value="{{ query.filter_type }}" />{% endif %}
+                            {% if query.filter_date %}<input type="hidden" name="filter_date" value="{{ query.filter_date }}" />{% endif %}
+                            {% if query.o %}<input type="hidden" name="o" value="{{ query.o }}" />{% endif %}
+                            {% if query.ot %}<input type="hidden" name="ot" value="{{ query.ot }}" />{% endif %}
+                            {% if query.pop %}<input type="hidden" name="pop" value="{{ query.pop }}" />{% endif %}
+                            {% if query.type %}<input type="hidden" name="type" value="{{ query.type }}" />{% endif %}
+                            {% if query.format %}<input type="hidden" name="format" value="{{ query.format }}" />{% endif %}
+                            {% if query.dir %}<input type="hidden" name="dir" value="{{ query.dir|urlencode }}" />{% endif %}
+                            {% ifequal query.pop '3' %} {# Custom CKEditor fields #}
+                                {% if query.CKEditor %}<input type="hidden" name="CKEditor" value="{{ query.CKEditor }}" />{% endif %}
+                                {% if query.CKEditorFuncNum %}<input type="hidden" name="CKEditorFuncNum" value="{{ query.CKEditorFuncNum }}" />{% endif %}
+                            {% endifequal %}
+                            </div>
+                        </form>
+                    </div>
+                    <script type="text/javascript">document.getElementById("searchbar").focus();</script>
+                {% endblock %}
 
-            <form id="changelist-form" action="" method="post">{% csrf_token %}
-                <!-- RESULTS -->
-                {% if filelisting.results_current %}
-                <div class="results">
-                    <table id="result_list">
-                        {% include "filebrowser/include/tableheader.html" %}
-                        <tbody>
-                        {% include "filebrowser/include/filelisting.html" %}
-                        </tbody>
-                    </table>
-                </div>
-                {% endif %}
+                <form id="changelist-form" action="" method="post">{% csrf_token %}
+                    <!-- RESULTS -->
+                    {% if filelisting.results_current %}
+                    <div class="results">
+                        <table id="result_list">
+                            {% include "suit/include/tableheader.html" %}
+                            <tbody>
+                            {% include "suit/include/filelisting.html" %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endif %}
 
-                {% pagination %}
-            </form>
+                    {% pagination %}
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

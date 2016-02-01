@@ -6,8 +6,6 @@
 <!-- STYLESHEETS -->
 {% block extrastyle %}
     {{ block.super }}
-    <!--<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />-->
-    <!--<link rel="stylesheet" type="text/css" href="{% static "filebrowser/css/filebrowser.css" %}" />-->
     <link rel="stylesheet" type="text/css" href="filebrowser/css/suit-filebrowser.css" />
 {% endblock %}
 
@@ -47,7 +45,7 @@
                           'csrf_xname': 'X-CSRFToken',
                           'folder': '{{ query.dir|escapejs }}', },
 
-                allowedExtensions: {% get_file_extensions request.GET %},
+//                allowedExtensions: {% get_file_extensions request.GET %},
                 sizeLimit: {{ settings_var.MAX_UPLOAD_SIZE|unlocalize }},
                 minSizeLimit: 0,
                 debug: false,
@@ -89,8 +87,7 @@
 {% endblock %}
 
 <!-- COLTYPE/BODYCLASS -->
-<!--{% block bodyclass %}change-form filebrowser{% if query.pop %} popup{% endif %}{% endblock %}-->
-{% block bodyclass %}change-form{% endblock %}
+{% block bodyclass %}change-form filebrowser{% if query.pop %} popup{% endif %}{% endblock %}
 {% block coltype %}colM{% endblock %}
 
 <!-- BREADCRUMBS -->
@@ -98,7 +95,7 @@
 
 <!-- CONTENT -->
 {% block content %}
-<div id="content-main" class="inner-two-columns">
+<div id="content-main">
     <form class="form-horizontal">
         <div>
             <fieldset class="module aligned">
@@ -111,7 +108,7 @@
             </div>
             <div class="form-row" id="back-button">
                 {% with breadcrumbs|last as last_breadcrumb %}
-                    <a class="ui button" href="{% url 'filebrowser:fb_browse' %}{% query_string '' 'q,dir,filename,p' %}&amp;dir={{ last_breadcrumb.1|urlencode }}">{% trans 'Return to uploads' %}</a>
+                    <a class="ui button" href="{% url 'filebrowser:fb_browse' %}{% query_string '' 'q,dir,filename,p' %}&amp;dir={{ last_breadcrumb.1|urlencode }}">{% trans "Return to uploads" %}</a>
                 {% endwith %}
             </div>
             </fieldset>

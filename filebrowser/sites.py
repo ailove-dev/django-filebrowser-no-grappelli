@@ -399,7 +399,7 @@ class FileBrowserSite(object):
             'form': form,
             'query': query,
             'title': _(u'New Folder'),
-            'is_popup': "pop" in request.REQUEST,
+            'is_popup': "pop" in request.GET,
             'settings_var': get_settings_var(directory=self.directory),
             'breadcrumbs': get_breadcrumbs(query, query.get('dir', '')),
             'breadcrumbs_title': _(u'New Folder'),
@@ -413,7 +413,7 @@ class FileBrowserSite(object):
         return render_to_response(_template() + 'upload.html', self._add_each_context({
             'query': query,
             'title': _(u'Select files to upload'),
-            'is_popup': "pop" in request.REQUEST,
+            'is_popup': "pop" in request.GET,
             'settings_var': get_settings_var(directory=self.directory),
             'breadcrumbs': get_breadcrumbs(query, query.get('dir', '')),
             'breadcrumbs_title': _(u'Upload'),
@@ -447,7 +447,7 @@ class FileBrowserSite(object):
             'additional_files': additional_files,
             'query': query,
             'title': _(u'Confirm delete'),
-            'is_popup': "pop" in request.REQUEST,
+            'is_popup': "pop" in request.GET,
             'settings_var': get_settings_var(directory=self.directory),
             'breadcrumbs': get_breadcrumbs(query, query.get('dir', '')),
             'breadcrumbs_title': _(u'Confirm delete'),
@@ -495,7 +495,7 @@ class FileBrowserSite(object):
                         # Pre-action signal
                         signals.filebrowser_actions_pre_apply.send(sender=request, action_name=action_name, fileobject=[fileobject], site=self)
                         # Call the action to action
-                        action_response = action(request=request, fileobjects=[fileobject])
+                        action_response = action(request.GET, fileobjects=[fileobject])
                         # Post-action signal
                         signals.filebrowser_actions_post_apply.send(sender=request, action_name=action_name, fileobject=[fileobject], result=action_response, site=self)
                     if new_name != fileobject.filename:
@@ -521,7 +521,7 @@ class FileBrowserSite(object):
             'fileobject': fileobject,
             'query': query,
             'title': u'%s' % fileobject.filename,
-            'is_popup': "pop" in request.REQUEST,
+            'is_popup': "pop" in request.GET,
             'settings_var': get_settings_var(directory=self.directory),
             'breadcrumbs': get_breadcrumbs(query, query.get('dir', '')),
             'breadcrumbs_title': u'%s' % fileobject.filename,

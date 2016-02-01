@@ -6,14 +6,14 @@
 <!-- STYLESHEETS -->
 {% block extrastyle %}
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}" />
 {% endblock %}
 
 <!-- JAVASCRIPTS -->
 {% block extrahead %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static "admin/js/jquery.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "admin/js/jquery.init.js" %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/jquery.init.js' %}"></script>
     <script type="text/javascript">
     (function($) {
         $(document).ready(function() {
@@ -36,7 +36,7 @@
 <!-- CONTENT -->
 {% block content %}
 <div id="content-main">
-    <form action="{% query_string "" "filter_date,filter_type,q,p" %}" method="post">{% csrf_token %}
+    <form action="{% query_string '' 'filter_date,filter_type,q,p' %}" method="post">{% csrf_token %}
         <div>
             {% if form.errors %}<p class="errornote">{% trans 'Please correct the following errors.' %}</p>{% endif %}
             <fieldset class="module aligned">
