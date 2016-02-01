@@ -6,14 +6,14 @@
 <!-- JAVASCRIPTS -->
 {% block extrahead %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static "admin/js/jquery.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "admin/js/jquery.init.js" %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'admin/js/jquery.init.js' %}"></script>
     {% ifequal query.pop '1' %} <!-- FileBrowseField -->
-    <script language="javascript" type="text/javascript" src="{% static "filebrowser/js/FB_FileBrowseField.js" %}"></script>
+    <script language="javascript" type="text/javascript" src="{% static 'filebrowser/js/FB_FileBrowseField.js' %}"></script>
     {% endifequal %}
     {% ifequal query.pop '2' %} <!-- TinyMCE -->
-    <script language="javascript" type="text/javascript" src="{% static "tiny_mce/tiny_mce_popup.js" %}"></script>
-    <script language="javascript" type="text/javascript" src="{% static "filebrowser/js/FB_TinyMCE.js" %}"></script>
+    <script language="javascript" type="text/javascript" src="{% static 'tiny_mce/tiny_mce_popup.js' %}"></script>
+    <script language="javascript" type="text/javascript" src="{% static 'filebrowser/js/FB_TinyMCE.js' %}"></script>
     {% if query.mce_rdomain %}<script language="javascript">document.domain = "{{ query.mce_rdomain }}"</script>{% endif %}
     {% endifequal %}
 {% endblock %}
