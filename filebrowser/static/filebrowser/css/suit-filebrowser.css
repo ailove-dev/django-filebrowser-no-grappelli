@@ -64,12 +64,13 @@ body .redactor_toolbar li a.redactor_btn_browser {
 
 #changelist table tbody td.fb_thumbnail {
   padding-left: 0;
-  width: 150px;
+  width: 30%;
+  text-align: center;
 
 }
 #changelist table tbody td.fb_thumbnail img {
   height: auto;
-  max-width: 150px;
+  max-width: 100%;
 }
 
 
@@ -94,7 +95,8 @@ body .redactor_toolbar li a.redactor_btn_browser {
   text-align: center
 }
 .qq-upload-size, .qq-upload-file {
-  display: none !important;
+  /*display: none !important;*/
+  padding: 0 5px;
 }
 .qq-upload-success {
   margin: 6px 0;
@@ -102,6 +104,18 @@ body .redactor_toolbar li a.redactor_btn_browser {
   text-transform: uppercase;
   letter-spacing: 1.5px;
 }
+.qq-upload-success .qq-upload-failed-text {
+  display: none;
+}
+.qq-upload-failed .qq-upload-success-text {
+  display: none;
+}
+
+.qq-upload-success .qq-upload-complete, .qq-upload-failed .qq-upload-complete {
+  display: block;
+  line-height: 2;
+}
+
 .qq-upload-failed-text {
   display: inline-block;
   color: red;
@@ -130,4 +144,8 @@ body .redactor_toolbar li a.redactor_btn_browser {
   display: inline-block;
   padding-right: 15px;
   padding-left: 12px;
+}
+
+#changelist-form .results {
+  margin-right: 0;
 }
