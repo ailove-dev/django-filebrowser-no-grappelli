@@ -190,6 +190,7 @@ body .redactor_toolbar li a.redactor_btn_browser {
   width: auto;
   border-radius: 4px;
   padding: 0 25px;
+  cursor: default;
 }
 .details .module.aligned.wide img {
   display: block;
