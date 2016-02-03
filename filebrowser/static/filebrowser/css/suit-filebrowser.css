@@ -66,13 +66,21 @@ body .redactor_toolbar li a.redactor_btn_browser {
   padding-left: 0;
   width: 30%;
   text-align: center;
-
 }
 #changelist table tbody td.fb_thumbnail img {
   height: auto;
   max-width: 100%;
 }
 
+#back-button a {
+  display: inline-block;
+  padding: 5px 10px;
+  background: linear-gradient(to bottom, #91cfe6, #1592da);
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  margin: 10px 0;
+}
 
 .qq-upload-button {
   position: relative;
@@ -136,7 +144,7 @@ body .redactor_toolbar li a.redactor_btn_browser {
   width: 360px;
 }
 
-.module.aligned .required {
+.module.aligned .required, .details .form-row div >label {
   background: linear-gradient(#83b3c3, #5295b0);
   color: #fff;
   border-radius: 0 8px 8px 0;
@@ -148,4 +156,112 @@ body .redactor_toolbar li a.redactor_btn_browser {
 
 #changelist-form .results {
   margin-right: 0;
+}
+
+#content-main .module.aligned {
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.07);
+  border-radius: 4px;
+  margin-top: 35px;
+  position: relative;
+  display: table;
+}
+
+.details .module.aligned .required {
+  margin-left: 0;
+}
+
+.details .module.aligned >* {
+  text-align: left;
+}
+
+.details input, .details select, .details p {
+  margin-top: 10px;
+}
+.details p {
+  margin-left: 12px;
+}
+
+.details .module.aligned.wide >* {
+  text-align: center;
+}
+.details .module.aligned.wide label {
+  display: inline-block;;
+  margin: 0 auto;
+  width: auto;
+  border-radius: 4px;
+  padding: 0 25px;
+}
+.details .module.aligned.wide img {
+  display: block;
+  margin: 5px auto;
+}
+
+.details .module.aligned.wide .form-row {
+  border-top: 1px solid rgba(0,0,0,0.07);
+  padding-top: 5px;
+}
+
+.details .form-row div >label {
+  margin-left: 0;
+}
+.details .submit-row {
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.07);
+  border-radius: 4px;
+  margin-top: 35px;
+}
+.details .submit-row .deletelink-box, .details .submit-row input {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #62c462, #51a351);
+  border: none;
+  color: #fff;
+  text-decoration: none;
+}
+.details .submit-row .deletelink-box {
+  background: linear-gradient(to bottom, #f16868, #cd3f3f);
+}
+.details .submit-row input {
+  float: right;
+  margin-left: 0;
+  margin-right: 15px;
+}
+.details .submit-row p a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.details h2 {
+  margin-bottom: 10px;
+}
+
+.details .module.aligned:first-child .required, .details .module.aligned:nth-child(2) .required {
+  background: none;
+  color: #000;
+  font-size: 11pt;
+  vertical-align: middle;
+  margin: 0;
+  /*font-weight: 700;*/
+}
+.details .module.aligned:first-child p {
+  margin-top: 0;
+}
+.details .module.aligned:first-child .required:after, .details .module.aligned:nth-child(2) .required:after {
+  display: none;
+}
+
+#changelist-search div:first-child label:first-child {
+  display: none;
+}
+#toolbar #changelist-search div:first-child input[type=submit] {
+  background: linear-gradient(to bottom, #5bc0de, #2f96b4);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  color: #fff;
+  padding: 4px 12px;
+  border: 1px solid #cccccc;
+  font-size: 12px;
+  margin-left: 5px;
+}
+#changelist #toolbar form #searchbar {
+  padding: 3px 5px;
 }
