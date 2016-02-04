@@ -7,6 +7,8 @@
 {% block extrastyle %}
     {{ block.super }}
     <link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'filebrowser/css/suit-filebrowser.css' %}" />
+
 {% endblock %}
 
 <!-- JAVASCRIPTS -->
@@ -36,7 +38,7 @@
 <!-- CONTENT -->
 {% block content %}
 <div id="content-main">
-    <form action="{% query_string '' 'filter_date,filter_type,q,p' %}" method="post">{% csrf_token %}
+    <form action="{% query_string '' 'filter_date,filter_type,q,p' %}" method="post" class="details">{% csrf_token %}
         <div>
             {% if form.errors %}<p class="errornote">{% trans 'Please correct the following errors.' %}</p>{% endif %}
             <fieldset class="module aligned">

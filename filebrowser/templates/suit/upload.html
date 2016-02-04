@@ -17,7 +17,14 @@
     <script type="text/javascript" src="{% static 'admin/js/collapse.min.js' %}"></script>
     <script type="text/javascript" src="../../jsi18n/"></script>
     <script type="text/javascript" src="{% static 'filebrowser/js/fileuploader.js' %}"></script>
+
     <script type="text/javascript">
+
+
+
+
+
+
     (function($){
         $(document).ready(function() {
             var uploader = new qq.FileUploader({
@@ -36,7 +43,7 @@
                     '<span class="qq-upload-size"></span>' +
                     '<a class="qq-upload-cancel" href="#">{% trans "Cancel" %}</a>' +
                     '<span class="qq-upload-failed-text">{% trans "Failed" %}</span>' +
-                    '<span class="qq-upload-complete"></span>' +
+                    '<span class="qq-upload-complete">Успешно</span>' +
                     '<div class="progress-bar"><div class="content"></div></div>' +
                 '</div>',
 

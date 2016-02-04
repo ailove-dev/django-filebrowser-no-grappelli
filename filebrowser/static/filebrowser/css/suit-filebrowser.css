@@ -15,3 +15,254 @@ body .redactor_toolbar li a.redactor_btn_browser {
     background-position: -408px -120px;*/
     background: url("../img/explorer.png") no-repeat;
 }
+
+
+/*ручные стили*/
+
+#changelist table {
+  border-collapse: collapse;
+}
+
+#changelist table thead th, #changelist table tbody td, #changelist .paginator {
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+#changelist table thead th {
+  background: -webkit-linear-gradient(#83b3c3, #5295b0);
+  background: -moz-linear-gradient(#83b3c3, #5295b0);
+  background: -o-linear-gradient(#83b3c3, #5295b0);
+  background: linear-gradient(#83b3c3, #5295b0);
+  padding: 5px 0;
+  padding-left: 10px;
+  text-align: left;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+#changelist table thead th a {
+  text-decoration: none;
+  color: #fff;
+}
+#changelist table tbody td {
+  background: #f8f8f8;
+  border: 1px solid #d7d7d7;
+  vertical-align: top;
+}
+#changelist table tbody tr:nth-child(even) td {
+  background: #eeeeee;
+}
+#changelist table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+#changelist table tbody td:first-child {
+  border-left: none;
+}
+#changelist table tbody td:last-child {
+  border-right: none;
+}
+
+#changelist table tbody td.fb_thumbnail {
+  padding-left: 0;
+  width: 30%;
+  text-align: center;
+}
+#changelist table tbody td.fb_thumbnail img {
+  height: auto;
+  max-width: 100%;
+}
+
+#back-button a {
+  display: inline-block;
+  padding: 5px 10px;
+  background: linear-gradient(to bottom, #91cfe6, #1592da);
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  margin: 10px 0;
+}
+
+.qq-upload-button {
+  position: relative;
+  background: linear-gradient(to bottom, #62c462, #51a351);
+  color: #fff;
+  width: 200px;
+  margin: 0 auto !important;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 8px;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  font-size: 15pt;
+  margin-top: 10px !important;
+  /*background-image: url("../img/glyphicons-halflings-white.png");*/
+}
+.qq-upload-button input {
+  width: 100%;
+}
+.form-row {
+  text-align: center
+}
+.qq-upload-size, .qq-upload-file {
+  /*display: none !important;*/
+  padding: 0 5px;
+}
+.qq-upload-success {
+  margin: 6px 0;
+  font-size: 10pt;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+.qq-upload-success .qq-upload-failed-text {
+  display: none;
+}
+.qq-upload-failed .qq-upload-success-text {
+  display: none;
+}
+
+.qq-upload-success .qq-upload-complete, .qq-upload-failed .qq-upload-complete {
+  display: block;
+  line-height: 2;
+}
+
+.qq-upload-failed-text {
+  display: inline-block;
+  color: red;
+}
+.qq-upload-complete {
+  color: green;
+}
+
+.module.aligned:last-child h2 {
+  padding-top: 10px;
+  padding-left: 12px;
+  margin: 10px 0;
+  font-size: 20pt;
+}
+.module.aligned:last-child .form-row {
+  text-align: left;
+  padding-left: 12px;
+  width: 360px;
+}
+
+.module.aligned .required, .details .form-row div >label {
+  background: linear-gradient(#83b3c3, #5295b0);
+  color: #fff;
+  border-radius: 0 8px 8px 0;
+  margin-left: -12px;
+  display: inline-block;
+  padding-right: 15px;
+  padding-left: 12px;
+}
+
+#changelist-form .results {
+  margin-right: 0;
+}
+
+#content-main .module.aligned {
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.07);
+  border-radius: 4px;
+  margin-top: 35px;
+  position: relative;
+  display: table;
+}
+
+.details .module.aligned .required {
+  margin-left: 0;
+}
+
+.details .module.aligned >* {
+  text-align: left;
+}
+
+.details input, .details select, .details p {
+  margin-top: 10px;
+}
+.details p {
+  margin-left: 12px;
+}
+
+.details .module.aligned.wide >* {
+  text-align: center;
+}
+.details .module.aligned.wide label {
+  display: inline-block;;
+  margin: 0 auto;
+  width: auto;
+  border-radius: 4px;
+  padding: 0 25px;
+  cursor: default;
+}
+.details .module.aligned.wide img {
+  display: block;
+  margin: 5px auto;
+}
+
+.details .module.aligned.wide .form-row {
+  border-top: 1px solid rgba(0,0,0,0.07);
+  padding-top: 5px;
+}
+
+.details .form-row div >label {
+  margin-left: 0;
+}
+.details .submit-row {
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.07);
+  border-radius: 4px;
+  margin-top: 35px;
+}
+.details .submit-row .deletelink-box, .details .submit-row input {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #62c462, #51a351);
+  border: none;
+  color: #fff;
+  text-decoration: none;
+}
+.details .submit-row .deletelink-box {
+  background: linear-gradient(to bottom, #f16868, #cd3f3f);
+}
+.details .submit-row input {
+  float: right;
+  margin-left: 0;
+  margin-right: 15px;
+}
+.details .submit-row p a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.details h2 {
+  margin-bottom: 10px;
+}
+
+.details .module.aligned:first-child .required, .details .module.aligned:nth-child(2) .required {
+  background: none;
+  color: #000;
+  font-size: 11pt;
+  vertical-align: middle;
+  margin: 0;
+  /*font-weight: 700;*/
+}
+.details .module.aligned:first-child p {
+  margin-top: 0;
+}
+.details .module.aligned:first-child .required:after, .details .module.aligned:nth-child(2) .required:after {
+  display: none;
+}
+
+#changelist-search div:first-child label:first-child {
+  display: none;
+}
+#toolbar #changelist-search div:first-child input[type=submit] {
+  background: linear-gradient(to bottom, #5bc0de, #2f96b4);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  color: #fff;
+  padding: 4px 12px;
+  border: 1px solid #cccccc;
+  font-size: 12px;
+  margin-left: 5px;
+}
+#changelist #toolbar form #searchbar {
+  padding: 3px 5px;
+}
