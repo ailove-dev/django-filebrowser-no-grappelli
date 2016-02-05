@@ -266,3 +266,76 @@ body .redactor_toolbar li a.redactor_btn_browser {
 #changelist #toolbar form #searchbar {
   padding: 3px 5px;
 }
+table#result_list tbody tr td.fb_icon {
+  min-width: 130px;
+}
+table#result_list tbody tr td.fb_icon button {
+  background: linear-gradient(#83b3c3, #5295b0);
+  border: none;
+  border-radius: 6px;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  padding: 4px 0;
+  color: #ffffff;
+  margin: 10px auto 0;
+  display: inline-block;
+  margin-top: 7px;
+  width: 80px;
+}
+table#result_list tbody tr td.fb_icon {
+  text-align: center;
+}
+table#result_list tbody tr td.fb_icon .pulldown-versions-container {
+  display: inline-block;
+  margin: 10px 0;
+  position: relative;
+  background: linear-gradient(#83b3c3, #5295b0);
+  width: 30px;
+  height: 26px;
+  border-radius: 0 6px 6px 0;
+  margin-left: -10px;
+}
+
+table#result_list tbody tr td.fb_icon .pulldown-versions-container .pulldown-versions-handler{
+  width: 30px;
+  height: 26px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  margin-left: -9px;
+  text-decoration: none;
+  background: url('../img/tee.png') center center no-repeat;
+}
+
+table#result_list tbody tr td.fb_icon .pulldown-versions-container ul {
+  display: none;
+}
+table#result_list tbody tr td.fb_icon .pulldown-versions-container.open ul {
+  display: block;
+  list-style: none;
+  margin: 0;
+  border-radius: 0 0 6px 6px;
+  overflow: hidden;
+  clear: both;
+  position: absolute;
+  left: -73px;
+  top: 100%;
+  width: 103px;
+  background: #5295b0;
+  z-index: 999;
+}
+table#result_list tbody tr td.fb_icon .pulldown-versions-container.open li  {
+  text-align: center;
+  background: linear-gradient(#83b3c3, #5295b0);
+  padding: 5px 0;
+}
+table#result_list tbody tr td.fb_icon .pulldown-versions-container.open li a {
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+}
+table#result_list tbody tr.selected td.fb_icon button {
+  border-radius: 6px 6px 0 0 !important
+}
+table#result_list tbody tr td.fb_icon .pulldown-versions-container.open {
+  border-radius: 0 6px 0 0;
+}
